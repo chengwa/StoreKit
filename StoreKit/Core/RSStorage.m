@@ -12,8 +12,9 @@
 #import "RSDatabaseConnector.h"
 
 @interface RSStorage ()
-@property (assign, nonatomic) RSStoreKit *kit;
+@property (assign, nonatomic) id parent;
 @property (strong, nonatomic) NSMutableArray *buckets;
+@property (strong, nonatomic) dispatch_queue_t ioQueue;
 @end
 
 @interface RSStoreKit ()
@@ -25,9 +26,24 @@
     assert(kit);
     assert([name length]);
     if (self = [super init]) {
-        _kit = kit;
+        _parent = kit;
         _name = name;
-        _path = [[_kit rootPath] stringByAppendingPathComponent:name];
+        _path = [[kit rootPath] stringByAppendingPathComponent:name];
+        _ioQueue = dispatch_queue_create([_name UTF8String], DISPATCH_QUEUE_SERIAL);
+        _level = 1;
+    }
+    return self;
+}
+
+- (instancetype)initWithStorage:(RSStorage *)storage name:(NSString *)name {
+    assert(storage);
+    assert([name length]);
+    if (self = [super init]) {
+        _parent = storage;
+        _name = name;
+        _path = [[storage path] stringByAppendingPathComponent:name];
+        _ioQueue = dispatch_queue_create([_name UTF8String], DISPATCH_QUEUE_SERIAL);
+        _level = [storage level] + 1;
     }
     return self;
 }
@@ -40,26 +56,80 @@
     return [object isKindOfClass:[self class]] && [_path isEqualToString:[object path]];
 }
 
-- (BOOL)setObject:(id<NSCoding>)object forKey:(id<RSPrimaryKey>)aKey {
-    __block BOOL s = NO;
-    [[self kit] commitStoreRequest:^{
+- (void)setObject:(id<NSCoding>)object forKey:(id<RSPrimaryKey>)aKey {
+    dispatch_async(_ioQueue, ^{
         NSString *path = [[self path] stringByAppendingPathComponent:[aKey getInKey]];
-        s = [[NSKeyedArchiver archivedDataWithRootObject:object] writeToFile:path atomically:YES];
-    }];
-    return s;
+        if (![[NSKeyedArchiver archivedDataWithRootObject:object] writeToFile:path atomically:YES]) {
+            NSLog(@"%@", @(__FUNCTION__));
+        }
+    });
 }
 
-- (id<NSCoding>)objectForKey:(id<RSPrimaryKey>)key {
-    __block id<NSCoding> o = nil;
-    [[self kit] commitStoreRequest:^{
+- (void)objectForKey:(id<RSPrimaryKey>)key withCompletion:(RSBucketQueryCompletedBlock)block {
+    dispatch_async(_ioQueue, ^{
         NSString *path = [[self path] stringByAppendingPathComponent:[key getInKey]];
-        o = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    }];
-    return o;
+        return block([NSData dataWithContentsOfFile:path], RSBucketCacheTypeDisk);
+    });
+}
+
+- (RSStoreKit *)kit {
+    return _level == 1 ? _parent : [_parent kit];
+}
+@end
+
+@implementation RSStorage (Storage)
+
++ (BOOL)_createStorageIfNoExist:(RSStorage *)storage name:(NSString *)name {
+    NSFileManager *fileMgr = [[storage kit] fileMgr];
+    NSString *path = [[storage path] stringByAppendingPathComponent:name];
+    BOOL isDir = NO;
+    BOOL success = [fileMgr fileExistsAtPath:path isDirectory:&isDir];
+    if (success && isDir) {
+        return YES;
+    }
+    if (!success) {
+        NSError *error = nil;
+        success = [fileMgr createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        if (success) {
+            return YES;
+        }
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    return NO;
+}
+
+- (RSStorage *)storage {
+    return [self storageNamed:[[NSUUID UUID] UUIDString]];
+}
+
+- (RSStorage *)storageNamed:(NSString *)name {
+    name = [RSStoreKit nameForKey:name];
+    if ([[self class] _createStorageIfNoExist:self name:name]) {
+        RSStorage *storage = [[RSStorage alloc] initWithStorage:self name:name];
+        
+        return storage;
+    }
+    return nil;
+}
+
+- (void)removeStorage:(RSStorage *)storage {
+    if ([storage level] != [self level] + 1) {
+        return [[storage parent] removeStorage:storage];
+    } else {
+        dispatch_sync(_ioQueue, ^{
+            NSString *str = [storage path];
+            NSError *error = nil;
+            BOOL success = [[[self kit] fileMgr] removeItemAtPath:str error:&error];
+            if (!success) {
+                NSLog(@"%@", [error localizedDescription]);
+            }
+        });
+    }
 }
 @end
 
 @implementation RSStorage (Bucket)
+
 + (BOOL)_createBucketIfNoExist:(RSStorage *)storage name:(NSString *)name {
     NSFileManager *fileMgr = [[storage kit] fileMgr];
     NSString *path = [[storage path] stringByAppendingPathComponent:name];
@@ -88,10 +158,6 @@
         return [[RSBucket alloc] initWithStorage:self name:name];
     }
     return nil;
-}
-
-- (void)commitStoreRequest:(void (^)())request {
-    return [[self kit] commitStoreRequest:request];
 }
 @end
 

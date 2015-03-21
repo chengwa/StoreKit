@@ -29,7 +29,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
 @property (strong, nonatomic) NSMutableArray *customPaths;
 @property (strong, nonatomic) dispatch_queue_t ioQueue;
 
-- (void)__commonInitialize:(NSString *)fullNamespace;
+- (void)__commonInitialize:(NSString *)fullNamespace useMemoryCache:(BOOL)enabled;
 @end
 
 @interface RSBucket (Path)
@@ -37,14 +37,14 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
 @end
 
 @implementation RSBucket
-- (void)__commonInitialize:(NSString *)fullNamespace {
+- (void)__commonInitialize:(NSString *)fullNamespace useMemoryCache:(BOOL)enabled {
     _ioQueue = dispatch_queue_create([fullNamespace UTF8String], DISPATCH_QUEUE_SERIAL);
     
     // Init default values
     _maxCacheAge = kDefaultCacheMaxCacheAge;
     
     // Init the memory cache
-    [self setUseMemoryCache:YES];
+    [self setUseMemoryCache:enabled];
     
     // Init the disk cache
     _diskCachePath = [_path stringByAppendingPathComponent:fullNamespace];
@@ -90,13 +90,18 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
 }
 
 - (instancetype)initWithStorage:(RSStorage *)storage name:(NSString *)name {
-    assert(storage);
-    assert([name length]);
+    return [self initWithStorage:storage name:name enableCache:NO];
+}
+
+- (instancetype)initWithStorage:(RSStorage *)storage name:(NSString *)name enableCache:(BOOL)enabled {
+    if (!storage || [name length] == 0) {
+        return nil;
+    }
     if (self = [super init]) {
         _storage = storage;
         _name = name;
         _path = [[storage path] stringByAppendingPathComponent:name];
-        [self __commonInitialize:_name];
+        [self __commonInitialize:_name useMemoryCache:enabled];
     }
     return self;
 }

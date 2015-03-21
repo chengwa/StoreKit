@@ -8,8 +8,15 @@
 
 #import "RSStoreKit.h"
 #import "RSStorage.h"
+#import <CommonCrypto/CommonCrypto.h>
 
 static NSString *__StoreKitRootName = @"StoreKit";
+
+NSString *RSStoreKitStorageShowNameKey = @"RSStoreKitStorageShowName";
+
+@interface RSStorage (Private)
+- (id)parent;
+@end
 
 @interface RSStoreKit (Initialize)
 - (void)_initFileSystemStoreKit;
@@ -17,6 +24,7 @@ static NSString *__StoreKitRootName = @"StoreKit";
 
 @interface RSStoreKit ()
 @property (strong, nonatomic) NSFileManager *fileMgr;
+@property (strong, nonatomic) NSMutableArray *storages; // level 1
 @property (strong, nonatomic) dispatch_queue_t storageQueue;
 @end
 
@@ -43,7 +51,7 @@ static NSString *__StoreKitRootName = @"StoreKit";
 }
 @end
 
-@implementation RSStoreKit (Bucket)
+@implementation RSStoreKit (Storage)
 
 + (BOOL)_createStorageIfNoExist:(RSStoreKit *)kit name:(NSString *)name {
     NSFileManager *fileMgr = [kit fileMgr];
@@ -69,15 +77,81 @@ static NSString *__StoreKitRootName = @"StoreKit";
 }
 
 - (RSStorage *)storageNamed:(NSString *)name {
+    name = [RSStoreKit nameForKeyImpl:name];
     if ([RSStoreKit _createStorageIfNoExist:self name:name]) {
-        return [[RSStorage alloc] initWithStore:self name:name];
+        RSStorage *storage = [[RSStorage alloc] initWithStore:self name:name];
+        [self commitStoreRequest:^{
+            [_storages addObject:storage];
+        }];
+        return storage;
     }
     return nil;
+}
+
+- (void)_removeStorageImpl:(RSStorage *)storage {
+    NSError *error = nil;
+    BOOL success = [_fileMgr removeItemAtPath:[storage path] error:&error];
+    if (!success) {
+        NSLog(@"%@", error);
+    }
+}
+
+- (void)removeStorage:(RSStorage *)storage {
+    if ([storage level] == 1) {
+        [self commitStoreRequest:^{
+            [self _removeStorageImpl:storage];
+        }];
+    } else {
+        return [[storage parent] removeStorage:storage];
+    }
+}
+
+- (void)removeAllStorages {
+    [self commitStoreRequest:^{
+        for (RSStorage *storage in _storages) {
+            [self _removeStorageImpl:storage];
+        }
+        [_storages removeAllObjects];
+    }];
+}
+
+- (void)cleanup {
+    [self commitStoreRequest:^{
+        [_fileMgr removeItemAtPath:[self rootPath] error:nil];
+        [self _initFileSystemStoreKit];
+    }];
 }
 
 - (void)commitStoreRequest:(void (^)())request {
     dispatch_sync(_storageQueue, request);
 }
+@end
+
+@implementation RSStoreKit (Name)
+
++ (NSString *)nameForKey:(NSString *)key {
+    if (key == nil) {
+        key = @"";
+    }
+    if ([[[NSBundle mainBundle] infoDictionary][RSStoreKitStorageShowNameKey] boolValue]) {
+        return key;
+    }
+    return [self nameForKeyImpl:key];
+}
+
++ (NSString *)nameForKeyImpl:(NSString *)key {
+    const char *str = [key UTF8String];
+    if (str == NULL) {
+        str = "";
+    }
+    unsigned char r[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(str, (CC_LONG)strlen(str), r);
+    NSString *filename = [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                          r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
+    
+    return filename;
+}
+
 @end
 
 @implementation RSStoreKit (Initialize)
@@ -86,7 +160,6 @@ static NSString *__StoreKitRootName = @"StoreKit";
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSAllDomainsMask, YES) firstObject];
     NSLog(@"%@", path);
     NSFileManager *fileMgr = [NSFileManager defaultManager];
-    path = [path stringByDeletingLastPathComponent];
     NSString *rootPath = [path stringByAppendingPathComponent:__StoreKitRootName];
     NSError *fileError = nil;
     BOOL success = [fileMgr createDirectoryAtPath:rootPath withIntermediateDirectories:YES attributes:nil error:&fileError];
@@ -97,6 +170,7 @@ static NSString *__StoreKitRootName = @"StoreKit";
     NSLog(@"create %@ success", rootPath);
     _rootPath = rootPath;
     _fileMgr = fileMgr;
+    _storages = [[NSMutableArray alloc] initWithCapacity:8];
 }
 
 @end

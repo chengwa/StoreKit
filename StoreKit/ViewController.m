@@ -7,6 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "RSStoreKit.h"
+#import "RSStorage.h"
+#import "RSDao.h"
+#import "RSBucket.h"
+#import "RSVersionDao.h"
 
 @interface ViewController ()
 
@@ -16,7 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    RSStoreKit *kit = [RSStoreKit kit];
+    RSStorage *storage = [kit storageNamed:@"1"];
+    RSBucket *imageBucket = [storage bucketNamed:@"image"];
+    RSDatabaseConnector *connector = [storage connectorNamed:@"accounts"];
+    RSVersionDao *dao = [[RSVersionDao alloc] initWithConnector:connector];
+    dao = nil;
+    RSStorage *payment = [storage storageNamed:@"Payment"];
+    [kit removeAllStorages];
+//    [kit removeStorage:storage];
 }
 
 - (void)didReceiveMemoryWarning {

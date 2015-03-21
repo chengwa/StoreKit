@@ -31,6 +31,7 @@ typedef NSString *(^RSBucketCacheKeyFilterBlock)(NSURL *url);
 @property (strong, nonatomic, readonly) NSString *path;
 @property (strong, nonatomic, readonly) NSString *name;
 - (instancetype)initWithStorage:(RSStorage *)storage name:(NSString *)name;
+- (instancetype)initWithStorage:(RSStorage *)storage name:(NSString *)name enableCache:(BOOL)enabled;
 @end
 
 @interface RSBucket (Cache)

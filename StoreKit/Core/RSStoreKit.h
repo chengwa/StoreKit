@@ -18,4 +18,11 @@
 - (RSStorage *)storage;
 - (RSStorage *)storageNamed:(NSString *)name;
 - (void)commitStoreRequest:(void(^)())request;
+- (void)removeStorage:(RSStorage *)storage;
+- (void)removeAllStorages;
+@end
+
+@interface RSStoreKit (Name)
++ (NSString *)nameForKey:(NSString *)key;
++ (NSString *)nameForKeyImpl:(NSString *)key;
 @end

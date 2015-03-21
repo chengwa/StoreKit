@@ -7,22 +7,29 @@
 //
 
 #import "RSPrimaryKey.h"
+#import "RSBucket.h"
 
-@class RSStoreKit, RSBucket, RSDatabaseConnector;
+@class RSStoreKit, RSDatabaseConnector;
 
 @interface RSStorage : RSObject
 @property (strong, nonatomic, readonly) NSString *path;
 @property (strong, nonatomic, readonly) NSString *name;
+@property (assign, nonatomic, readonly) NSInteger level;
 - (instancetype)initWithStore:(RSStoreKit *)kit name:(NSString *)name;
+- (instancetype)initWithStorage:(RSStorage *)storage name:(NSString *)name;
 
-- (BOOL)setObject:(id <NSCoding>)object forKey:(id<RSPrimaryKey>)aKey;
-- (id <NSCoding>)objectForKey:(id <RSPrimaryKey>)key;
+- (void)setObject:(id <NSCoding>)object forKey:(id<RSPrimaryKey>)aKey ;
+- (void)objectForKey:(id <RSPrimaryKey>)key withCompletion:(RSBucketQueryCompletedBlock)block;
+@end
+
+@interface RSStorage (Storage)
+- (RSStorage *)storageNamed:(NSString *)name;
+- (void)removeStorage:(RSStorage *)storage;
 @end
 
 @interface RSStorage (Bucket)
 - (RSBucket *)bucket;
 - (RSBucket *)bucketNamed:(NSString *)name;
-- (void)commitStoreRequest:(void(^)())request;
 @end
 
 @interface RSStorage (DBConnector)
