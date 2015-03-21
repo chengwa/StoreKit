@@ -155,8 +155,6 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
     return [self cachePathForKey:key inPath:self.diskCachePath];
 }
 
-#pragma mark SDImageCache (private)
-
 - (NSString *)cachedFileNameForKey:(NSString *)key {
     const char *str = [key UTF8String];
     if (str == NULL) {
@@ -169,8 +167,6 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
     
     return filename;
 }
-
-#pragma mark ImageCache
 
 - (void)storeData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk {
     if (!data || !key) {
