@@ -1,0 +1,16 @@
+# Uncomment this line to define a global platform for your project
+platform :osx, '10.10'
+
+target 'RSStoreKit' do
+pod 'FMDB'
+end
+
+target 'NEUApply' do
+pod 'FMDB'
+pod 'Underscore.m', '~> 0.2'
+end
+
+target 'RSStoreKitTests' do
+
+end
+

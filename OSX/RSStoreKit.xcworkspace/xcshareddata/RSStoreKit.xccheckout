@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7381FEEB-2938-44C6-80FE-53212980D268</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RSStoreKit</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>107D7AA1C8F35960F8CBE88B3F8CCB01E468F4CB</key>
+		<string>https://github.com/RetVal/StoreKit.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>OSX/RSStoreKit.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>107D7AA1C8F35960F8CBE88B3F8CCB01E468F4CB</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/RetVal/StoreKit.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>107D7AA1C8F35960F8CBE88B3F8CCB01E468F4CB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>107D7AA1C8F35960F8CBE88B3F8CCB01E468F4CB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>StoreKit</string>
+		</dict>
+	</array>
+</dict>
+</plist>
