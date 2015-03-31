@@ -86,18 +86,27 @@
 - (void)updateWithAction:(void (^)(BOOL success))action SQL:(NSString *)sql, ... {
     va_list ap;
     va_start(ap, sql);
+    [self _updateWithAction:action SQL:sql va_list:ap];
+    va_end(ap);
+}
+
+- (void)_updateWithAction:(void (^)(BOOL))action SQL:(NSString *)sql va_list:(va_list)ap {
     [_queue inDatabase:^(FMDatabase *db) {
         BOOL x = [db executeUpdate:sql withVAList:ap];
         if (action) {
             action(x);
         }
     }];
-    va_end(ap);
 }
 
 - (void)queryObjectWithActon:(void(^)(id obj))action rowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ... {
     va_list ap;
     va_start(ap, sql);
+    [self _queryObjectWithActon:action rowMapper:rowMapper SQL:sql va_list:ap];
+    va_end(ap);
+}
+
+- (void)_queryObjectWithActon:(void(^)(id obj))action rowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql va_list:(va_list)ap {
     [_queue inDatabase:^(FMDatabase *db) {
         FMResultSet *set = [db executeQuery:sql withVAList:ap];
         if (action) {
@@ -113,12 +122,17 @@
             [set setParentDB:nil];
         }
     }];
-    va_end(ap);
 }
+
 
 - (void)queryObjectsWithActon:(void(^)(NSArray *objs))action rowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ... {
     va_list ap;
     va_start(ap, sql);
+    [self _queryObjectWithActon:action rowMapper:rowMapper SQL:sql va_list:ap];
+    va_end(ap);
+}
+
+- (void)_queryObjectsWithActon:(void(^)(NSArray *objs))action rowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql va_list:(va_list)ap {
     [_queue inDatabase:^(FMDatabase *db) {
         FMResultSet *set = [db executeQuery:sql withVAList:ap];
         if (action) {
@@ -134,25 +148,35 @@
             [set setParentDB:nil];
         }
     }];
-    va_end(ap);
 }
 
 - (BOOL)updateWithSQL:(NSString *)sql, ... {
-    
-    __block BOOL x = NO;
+    BOOL x = NO;
     va_list ap;
     va_start(ap, sql);
+    x = [self _updateWithSQL:sql va_list:ap];
+    va_end(ap);
+    return x;
+}
+
+- (BOOL)_updateWithSQL:(NSString *)sql va_list:(va_list)ap {
+    __block BOOL x = NO;
     [_queue inDatabase:^(FMDatabase *db) {
         x = [db executeUpdate:sql withVAList:ap];
     }];
-    va_end(ap);
-    
     return x;
 }
 
 - (id)queryObjectWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ... {
     va_list ap;
     va_start(ap, sql);
+    id obj = nil;
+    obj = [self _queryObjectWithRowMapper:rowMapper SQL:sql va_list:ap];
+    va_end(ap);
+    return obj;
+}
+
+- (id)_queryObjectWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql va_list:(va_list)ap {
     __block id obj = nil;
     [_queue inDatabase:^(FMDatabase *db) {
         FMResultSet *set = [db executeQuery:sql withVAList:ap];
@@ -162,13 +186,20 @@
         [set close];
         [set setParentDB:nil];
     }];
-    va_end(ap);
     return obj;
 }
+
 
 - (NSMutableArray *)queryObjectsWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ... {
     va_list ap;
     va_start(ap, sql);
+    NSMutableArray *objs = nil;
+    objs = [self _queryObjectsWithRowMapper:rowMapper SQL:sql va_list:ap];
+    va_end(ap);
+    return objs;
+}
+
+- (NSMutableArray *)_queryObjectsWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql va_list:(va_list)ap {
     __block NSMutableArray *objs = nil;
     [_queue inDatabase:^(FMDatabase *db) {
         FMResultSet *set = [db executeQuery:sql withVAList:ap];
@@ -179,7 +210,6 @@
         [set close];
         [set setParentDB:nil];
     }];
-    va_end(ap);
     return objs;
 }
 
@@ -210,7 +240,7 @@
 
 - (NSMutableArray *)allTableNames {
     static NSString *SQL = @"SELECT tbl_name FROM sqlite_master where type = \"table\";";
-    return [self queryObjectsWithRowMapper:[RyxDatabaseConnectorTableNameRowMapper new] SQL:SQL];
+    return [self queryObjectsWithRowMapper:[RyxDatabaseConnectorTableNameRowMapper new] SQL:SQL, nil];
 }
 
 - (BOOL)tableIsExist:(NSString *)tableName {

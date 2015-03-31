@@ -133,6 +133,10 @@
     return [[self connector] lastError];
 }
 
++ (BOOL)supportDynamic {
+    return NO;
+}
+
 + (NSString *)dropDao {
     if ([[self daoName] length] == 0) {
         return nil;
@@ -150,6 +154,38 @@
 
 + (NSString *)daoName {
     return nil;
+}
+
++ (NSString *)primaryKeyName {
+    return @"id";
+}
+
++ (Class<RSRowMapper,NSObject>)defaultRowMapper {
+    return nil;
+}
+
+- (Class<RSRowMapper,NSObject>)defaultRowMapper {
+    return [[self class] defaultRowMapper];
+}
+
+- (NSString *)primaryKeyName {
+    return [[self class] primaryKeyName];
+}
+
+- (NSString *)daoName {
+    return [[self class] daoName];
+}
+
+- (NSString *)createDao {
+    return [[self class] createDao];
+}
+
+- (NSString *)dropDao {
+    return [[self class] dropDao];
+}
+
+- (NSInteger)daoVersion {
+    return [[self class] daoVersion];
 }
 
 @end

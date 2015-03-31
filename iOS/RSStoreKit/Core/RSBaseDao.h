@@ -38,8 +38,20 @@
 @end
 
 @interface RSBaseDao (DaoExtension)
++ (BOOL)supportDynamic; // default NO;
++ (NSString *)primaryKeyName;
++ (Class<RSRowMapper, NSObject>)defaultRowMapper;
 + (NSString *)createDao;
 + (NSString *)dropDao;
 + (NSInteger)daoVersion;
 + (NSString *)daoName;
+@end
+
+@interface RSBaseDao (DynamicDaoExtension)
+- (NSString *)primaryKeyName;
+- (Class<RSRowMapper, NSObject>)defaultRowMapper;
+- (NSString *)createDao;
+- (NSString *)dropDao;
+- (NSInteger)daoVersion;
+- (NSString *)daoName;
 @end

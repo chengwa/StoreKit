@@ -45,7 +45,7 @@ NSString *RSStoreKitStorageShowNameKey = @"RSStoreKitStorageShowName";
 - (instancetype)init {
     if (self = [super init]) {
         [self _initFileSystemStoreKit];
-        _storageQueue = dispatch_queue_create("com.RSStoreKit.storageService.requestQueue", 0);
+        _storageQueue = dispatch_queue_create("com.RSStoreKit.storageService.requestQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }

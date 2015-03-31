@@ -39,3 +39,7 @@ typedef int64_t RSIDType;
 - (NSString *)getInKey;
 - (BOOL)isEqual:(id)object;
 @end
+
+@interface NSArray (PrimaryIDs)
+- (NSString *)ids;
+@end

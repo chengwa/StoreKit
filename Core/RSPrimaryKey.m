@@ -91,3 +91,37 @@
 }
 
 @end
+
+@implementation NSArray (PrimaryIDs)
+
+- (NSString *)ids {
+    if (![self count]) {
+        return @"";
+    }
+    NSMutableArray *ids = [[NSMutableArray alloc] initWithCapacity:[self count]];
+    for (id <RSPrimaryKey> key in self) {
+        if ([key isKindOfClass:[RSIntPK class]]) {
+            [ids addObject:@([(RSIntPK *)key ID])];
+        } else if ([key isKindOfClass:[NSNumber class]]) {
+            [ids addObject:key];
+        } else if ([key isKindOfClass:[RSStringPK class]] || [key isKindOfClass:[NSString class]]) {
+            [ids addObject:[key getInKey]];
+        } else {
+            return @"";
+        }
+    }
+    if ([ids count]) {
+        NSString *result = @"";
+        NSError *error = nil;
+        NSData *json = [NSJSONSerialization dataWithJSONObject:ids options:NSJSONWritingPrettyPrinted error:&error];
+        if (error) {
+            NSLog(@"%@", error);
+            return result;
+        }
+        result = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+        return result;
+    }
+    return nil;
+}
+
+@end

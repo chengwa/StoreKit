@@ -12,6 +12,7 @@
 #import "RSDao.h"
 #import "RSBucket.h"
 #import "RSVersionDao.h"
+#import "RSObjCClassDumpDao.h"
 
 @interface ViewController ()
 
@@ -21,14 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    RSStoreKit *kit = [RSStoreKit kit];
-    RSStorage *storage = [kit storageNamed:@"1"];
-    RSBucket *imageBucket = [storage bucketNamed:@"image"];
-    RSDatabaseConnector *connector = [storage connectorNamed:@"accounts"];
-    RSVersionDao *dao = [[RSVersionDao alloc] initWithConnector:connector];
-    dao = nil;
-    RSStorage *payment = [storage storageNamed:@"Payment"];
-    [kit removeAllStorages];
+    [RSObjCClassDumpDao dumpAction:^{
+        NSLog(@"dump finished");
+    }];
 //    [kit removeStorage:storage];
 }
 

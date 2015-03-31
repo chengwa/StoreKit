@@ -20,28 +20,30 @@
 		305574C31ABC002300142642 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 305574C21ABC002300142642 /* Images.xcassets */; };
 		305574C61ABC002300142642 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305574C41ABC002300142642 /* LaunchScreen.xib */; };
 		305574D21ABC002300142642 /* StoreKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 305574D11ABC002300142642 /* StoreKitTests.m */; };
-		30687A2D1AC42A9A0023FB83 /* DirectoryWatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A171AC42A9A0023FB83 /* DirectoryWatcher.h */; };
-		30687A2E1AC42A9A0023FB83 /* DirectoryWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A181AC42A9A0023FB83 /* DirectoryWatcher.m */; };
-		30687A2F1AC42A9A0023FB83 /* RSBaseDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A191AC42A9A0023FB83 /* RSBaseDao.h */; };
-		30687A301AC42A9A0023FB83 /* RSBaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A1A1AC42A9A0023FB83 /* RSBaseDao.m */; };
-		30687A311AC42A9A0023FB83 /* RSBucket.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A1B1AC42A9A0023FB83 /* RSBucket.h */; };
-		30687A321AC42A9A0023FB83 /* RSBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A1C1AC42A9A0023FB83 /* RSBucket.m */; };
-		30687A331AC42A9A0023FB83 /* RSDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A1D1AC42A9A0023FB83 /* RSDao.h */; };
-		30687A341AC42A9A0023FB83 /* RSDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A1E1AC42A9A0023FB83 /* RSDao.m */; };
-		30687A351AC42A9A0023FB83 /* RSDatabaseConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A1F1AC42A9A0023FB83 /* RSDatabaseConnector.h */; };
-		30687A361AC42A9A0023FB83 /* RSDatabaseConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A201AC42A9A0023FB83 /* RSDatabaseConnector.m */; };
-		30687A371AC42A9A0023FB83 /* RSObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A211AC42A9A0023FB83 /* RSObject.h */; };
-		30687A381AC42A9A0023FB83 /* RSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A221AC42A9A0023FB83 /* RSObject.m */; };
-		30687A391AC42A9A0023FB83 /* RSPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A231AC42A9A0023FB83 /* RSPrimaryKey.h */; };
-		30687A3A1AC42A9A0023FB83 /* RSPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A241AC42A9A0023FB83 /* RSPrimaryKey.m */; };
-		30687A3B1AC42A9A0023FB83 /* RSRowMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A251AC42A9A0023FB83 /* RSRowMapper.h */; };
-		30687A3C1AC42A9A0023FB83 /* RSRowMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A261AC42A9A0023FB83 /* RSRowMapper.m */; };
-		30687A3D1AC42A9A0023FB83 /* RSStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A271AC42A9A0023FB83 /* RSStorage.h */; };
-		30687A3E1AC42A9A0023FB83 /* RSStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A281AC42A9A0023FB83 /* RSStorage.m */; };
-		30687A3F1AC42A9A0023FB83 /* RSStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A291AC42A9A0023FB83 /* RSStoreKit.h */; };
-		30687A401AC42A9A0023FB83 /* RSStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A2A1AC42A9A0023FB83 /* RSStoreKit.m */; };
-		30687A411AC42A9A0023FB83 /* RSVersionDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 30687A2B1AC42A9A0023FB83 /* RSVersionDao.h */; };
-		30687A421AC42A9A0023FB83 /* RSVersionDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 30687A2C1AC42A9A0023FB83 /* RSVersionDao.m */; };
+		305D21831ACAAA1D00C0A698 /* DirectoryWatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D216B1ACAAA1D00C0A698 /* DirectoryWatcher.h */; };
+		305D21841ACAAA1D00C0A698 /* DirectoryWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D216C1ACAAA1D00C0A698 /* DirectoryWatcher.m */; };
+		305D21851ACAAA1D00C0A698 /* RSBaseDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D216D1ACAAA1D00C0A698 /* RSBaseDao.h */; };
+		305D21861ACAAA1D00C0A698 /* RSBaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D216E1ACAAA1D00C0A698 /* RSBaseDao.m */; };
+		305D21871ACAAA1D00C0A698 /* RSBucket.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D216F1ACAAA1D00C0A698 /* RSBucket.h */; };
+		305D21881ACAAA1D00C0A698 /* RSBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D21701ACAAA1D00C0A698 /* RSBucket.m */; };
+		305D21891ACAAA1D00C0A698 /* RSDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D21711ACAAA1D00C0A698 /* RSDao.h */; };
+		305D218A1ACAAA1E00C0A698 /* RSDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D21721ACAAA1D00C0A698 /* RSDao.m */; };
+		305D218B1ACAAA1E00C0A698 /* RSDatabaseConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D21731ACAAA1D00C0A698 /* RSDatabaseConnector.h */; };
+		305D218C1ACAAA1E00C0A698 /* RSDatabaseConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D21741ACAAA1D00C0A698 /* RSDatabaseConnector.m */; };
+		305D218D1ACAAA1E00C0A698 /* RSObjCClassDumpDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D21751ACAAA1D00C0A698 /* RSObjCClassDumpDao.h */; };
+		305D218E1ACAAA1E00C0A698 /* RSObjCClassDumpDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D21761ACAAA1D00C0A698 /* RSObjCClassDumpDao.m */; };
+		305D218F1ACAAA1E00C0A698 /* RSObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D21771ACAAA1D00C0A698 /* RSObject.h */; };
+		305D21901ACAAA1E00C0A698 /* RSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D21781ACAAA1D00C0A698 /* RSObject.m */; };
+		305D21911ACAAA1E00C0A698 /* RSPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D21791ACAAA1D00C0A698 /* RSPrimaryKey.h */; };
+		305D21921ACAAA1E00C0A698 /* RSPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D217A1ACAAA1D00C0A698 /* RSPrimaryKey.m */; };
+		305D21931ACAAA1E00C0A698 /* RSRowMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D217B1ACAAA1D00C0A698 /* RSRowMapper.h */; };
+		305D21941ACAAA1E00C0A698 /* RSRowMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D217C1ACAAA1D00C0A698 /* RSRowMapper.m */; };
+		305D21951ACAAA1E00C0A698 /* RSStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D217D1ACAAA1D00C0A698 /* RSStorage.h */; };
+		305D21961ACAAA1E00C0A698 /* RSStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D217E1ACAAA1D00C0A698 /* RSStorage.m */; };
+		305D21971ACAAA1E00C0A698 /* RSStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D217F1ACAAA1D00C0A698 /* RSStoreKit.h */; };
+		305D21981ACAAA1E00C0A698 /* RSStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D21801ACAAA1D00C0A698 /* RSStoreKit.m */; };
+		305D21991ACAAA1E00C0A698 /* RSVersionDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D21811ACAAA1D00C0A698 /* RSVersionDao.h */; };
+		305D219A1ACAAA1E00C0A698 /* RSVersionDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D21821ACAAA1D00C0A698 /* RSVersionDao.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,28 +111,30 @@
 		305574CB1ABC002300142642 /* StoreKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		305574D01ABC002300142642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		305574D11ABC002300142642 /* StoreKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreKitTests.m; sourceTree = "<group>"; };
-		30687A171AC42A9A0023FB83 /* DirectoryWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryWatcher.h; sourceTree = "<group>"; };
-		30687A181AC42A9A0023FB83 /* DirectoryWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryWatcher.m; sourceTree = "<group>"; };
-		30687A191AC42A9A0023FB83 /* RSBaseDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSBaseDao.h; sourceTree = "<group>"; };
-		30687A1A1AC42A9A0023FB83 /* RSBaseDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSBaseDao.m; sourceTree = "<group>"; };
-		30687A1B1AC42A9A0023FB83 /* RSBucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSBucket.h; sourceTree = "<group>"; };
-		30687A1C1AC42A9A0023FB83 /* RSBucket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSBucket.m; sourceTree = "<group>"; };
-		30687A1D1AC42A9A0023FB83 /* RSDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDao.h; sourceTree = "<group>"; };
-		30687A1E1AC42A9A0023FB83 /* RSDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDao.m; sourceTree = "<group>"; };
-		30687A1F1AC42A9A0023FB83 /* RSDatabaseConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDatabaseConnector.h; sourceTree = "<group>"; };
-		30687A201AC42A9A0023FB83 /* RSDatabaseConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDatabaseConnector.m; sourceTree = "<group>"; };
-		30687A211AC42A9A0023FB83 /* RSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObject.h; sourceTree = "<group>"; };
-		30687A221AC42A9A0023FB83 /* RSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSObject.m; sourceTree = "<group>"; };
-		30687A231AC42A9A0023FB83 /* RSPrimaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPrimaryKey.h; sourceTree = "<group>"; };
-		30687A241AC42A9A0023FB83 /* RSPrimaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPrimaryKey.m; sourceTree = "<group>"; };
-		30687A251AC42A9A0023FB83 /* RSRowMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSRowMapper.h; sourceTree = "<group>"; };
-		30687A261AC42A9A0023FB83 /* RSRowMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSRowMapper.m; sourceTree = "<group>"; };
-		30687A271AC42A9A0023FB83 /* RSStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStorage.h; sourceTree = "<group>"; };
-		30687A281AC42A9A0023FB83 /* RSStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStorage.m; sourceTree = "<group>"; };
-		30687A291AC42A9A0023FB83 /* RSStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStoreKit.h; sourceTree = "<group>"; };
-		30687A2A1AC42A9A0023FB83 /* RSStoreKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStoreKit.m; sourceTree = "<group>"; };
-		30687A2B1AC42A9A0023FB83 /* RSVersionDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVersionDao.h; sourceTree = "<group>"; };
-		30687A2C1AC42A9A0023FB83 /* RSVersionDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVersionDao.m; sourceTree = "<group>"; };
+		305D216B1ACAAA1D00C0A698 /* DirectoryWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryWatcher.h; sourceTree = "<group>"; };
+		305D216C1ACAAA1D00C0A698 /* DirectoryWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryWatcher.m; sourceTree = "<group>"; };
+		305D216D1ACAAA1D00C0A698 /* RSBaseDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSBaseDao.h; sourceTree = "<group>"; };
+		305D216E1ACAAA1D00C0A698 /* RSBaseDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSBaseDao.m; sourceTree = "<group>"; };
+		305D216F1ACAAA1D00C0A698 /* RSBucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSBucket.h; sourceTree = "<group>"; };
+		305D21701ACAAA1D00C0A698 /* RSBucket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSBucket.m; sourceTree = "<group>"; };
+		305D21711ACAAA1D00C0A698 /* RSDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDao.h; sourceTree = "<group>"; };
+		305D21721ACAAA1D00C0A698 /* RSDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDao.m; sourceTree = "<group>"; };
+		305D21731ACAAA1D00C0A698 /* RSDatabaseConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDatabaseConnector.h; sourceTree = "<group>"; };
+		305D21741ACAAA1D00C0A698 /* RSDatabaseConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDatabaseConnector.m; sourceTree = "<group>"; };
+		305D21751ACAAA1D00C0A698 /* RSObjCClassDumpDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObjCClassDumpDao.h; sourceTree = "<group>"; };
+		305D21761ACAAA1D00C0A698 /* RSObjCClassDumpDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSObjCClassDumpDao.m; sourceTree = "<group>"; };
+		305D21771ACAAA1D00C0A698 /* RSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObject.h; sourceTree = "<group>"; };
+		305D21781ACAAA1D00C0A698 /* RSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSObject.m; sourceTree = "<group>"; };
+		305D21791ACAAA1D00C0A698 /* RSPrimaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPrimaryKey.h; sourceTree = "<group>"; };
+		305D217A1ACAAA1D00C0A698 /* RSPrimaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPrimaryKey.m; sourceTree = "<group>"; };
+		305D217B1ACAAA1D00C0A698 /* RSRowMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSRowMapper.h; sourceTree = "<group>"; };
+		305D217C1ACAAA1D00C0A698 /* RSRowMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSRowMapper.m; sourceTree = "<group>"; };
+		305D217D1ACAAA1D00C0A698 /* RSStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStorage.h; sourceTree = "<group>"; };
+		305D217E1ACAAA1D00C0A698 /* RSStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStorage.m; sourceTree = "<group>"; };
+		305D217F1ACAAA1D00C0A698 /* RSStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStoreKit.h; sourceTree = "<group>"; };
+		305D21801ACAAA1D00C0A698 /* RSStoreKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStoreKit.m; sourceTree = "<group>"; };
+		305D21811ACAAA1D00C0A698 /* RSVersionDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVersionDao.h; sourceTree = "<group>"; };
+		305D21821ACAAA1D00C0A698 /* RSVersionDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVersionDao.m; sourceTree = "<group>"; };
 		380582FA4D401BA0C53949E8 /* Pods-RSStoreKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSStoreKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSStoreKit/Pods-RSStoreKit.release.xcconfig"; sourceTree = "<group>"; };
 		5011F9320B558EA45A98AA0E /* libPods-StoreKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StoreKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F9B13E2E3BF1EB0551FD42 /* Pods-RSStoreKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSStoreKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSStoreKit/Pods-RSStoreKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,7 +190,7 @@
 		302E2EAA1AC4253900AA6854 /* RSStoreKit */ = {
 			isa = PBXGroup;
 			children = (
-				30687A161AC42A9A0023FB83 /* Core */,
+				305D216A1ACAAA1D00C0A698 /* Core */,
 				302E2EAD1AC4253900AA6854 /* RSStoreKit.h */,
 				302E2EAB1AC4253900AA6854 /* Supporting Files */,
 			);
@@ -283,31 +287,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		30687A161AC42A9A0023FB83 /* Core */ = {
+		305D216A1ACAAA1D00C0A698 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				30687A171AC42A9A0023FB83 /* DirectoryWatcher.h */,
-				30687A181AC42A9A0023FB83 /* DirectoryWatcher.m */,
-				30687A191AC42A9A0023FB83 /* RSBaseDao.h */,
-				30687A1A1AC42A9A0023FB83 /* RSBaseDao.m */,
-				30687A1B1AC42A9A0023FB83 /* RSBucket.h */,
-				30687A1C1AC42A9A0023FB83 /* RSBucket.m */,
-				30687A1D1AC42A9A0023FB83 /* RSDao.h */,
-				30687A1E1AC42A9A0023FB83 /* RSDao.m */,
-				30687A1F1AC42A9A0023FB83 /* RSDatabaseConnector.h */,
-				30687A201AC42A9A0023FB83 /* RSDatabaseConnector.m */,
-				30687A211AC42A9A0023FB83 /* RSObject.h */,
-				30687A221AC42A9A0023FB83 /* RSObject.m */,
-				30687A231AC42A9A0023FB83 /* RSPrimaryKey.h */,
-				30687A241AC42A9A0023FB83 /* RSPrimaryKey.m */,
-				30687A251AC42A9A0023FB83 /* RSRowMapper.h */,
-				30687A261AC42A9A0023FB83 /* RSRowMapper.m */,
-				30687A271AC42A9A0023FB83 /* RSStorage.h */,
-				30687A281AC42A9A0023FB83 /* RSStorage.m */,
-				30687A291AC42A9A0023FB83 /* RSStoreKit.h */,
-				30687A2A1AC42A9A0023FB83 /* RSStoreKit.m */,
-				30687A2B1AC42A9A0023FB83 /* RSVersionDao.h */,
-				30687A2C1AC42A9A0023FB83 /* RSVersionDao.m */,
+				305D216B1ACAAA1D00C0A698 /* DirectoryWatcher.h */,
+				305D216C1ACAAA1D00C0A698 /* DirectoryWatcher.m */,
+				305D216D1ACAAA1D00C0A698 /* RSBaseDao.h */,
+				305D216E1ACAAA1D00C0A698 /* RSBaseDao.m */,
+				305D216F1ACAAA1D00C0A698 /* RSBucket.h */,
+				305D21701ACAAA1D00C0A698 /* RSBucket.m */,
+				305D21711ACAAA1D00C0A698 /* RSDao.h */,
+				305D21721ACAAA1D00C0A698 /* RSDao.m */,
+				305D21731ACAAA1D00C0A698 /* RSDatabaseConnector.h */,
+				305D21741ACAAA1D00C0A698 /* RSDatabaseConnector.m */,
+				305D21751ACAAA1D00C0A698 /* RSObjCClassDumpDao.h */,
+				305D21761ACAAA1D00C0A698 /* RSObjCClassDumpDao.m */,
+				305D21771ACAAA1D00C0A698 /* RSObject.h */,
+				305D21781ACAAA1D00C0A698 /* RSObject.m */,
+				305D21791ACAAA1D00C0A698 /* RSPrimaryKey.h */,
+				305D217A1ACAAA1D00C0A698 /* RSPrimaryKey.m */,
+				305D217B1ACAAA1D00C0A698 /* RSRowMapper.h */,
+				305D217C1ACAAA1D00C0A698 /* RSRowMapper.m */,
+				305D217D1ACAAA1D00C0A698 /* RSStorage.h */,
+				305D217E1ACAAA1D00C0A698 /* RSStorage.m */,
+				305D217F1ACAAA1D00C0A698 /* RSStoreKit.h */,
+				305D21801ACAAA1D00C0A698 /* RSStoreKit.m */,
+				305D21811ACAAA1D00C0A698 /* RSVersionDao.h */,
+				305D21821ACAAA1D00C0A698 /* RSVersionDao.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -328,18 +334,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				305D21971ACAAA1E00C0A698 /* RSStoreKit.h in Headers */,
 				302E2EAE1AC4253900AA6854 /* RSStoreKit.h in Headers */,
-				30687A2D1AC42A9A0023FB83 /* DirectoryWatcher.h in Headers */,
-				30687A351AC42A9A0023FB83 /* RSDatabaseConnector.h in Headers */,
-				30687A411AC42A9A0023FB83 /* RSVersionDao.h in Headers */,
-				30687A371AC42A9A0023FB83 /* RSObject.h in Headers */,
-				30687A331AC42A9A0023FB83 /* RSDao.h in Headers */,
-				30687A3D1AC42A9A0023FB83 /* RSStorage.h in Headers */,
-				30687A2F1AC42A9A0023FB83 /* RSBaseDao.h in Headers */,
-				30687A3B1AC42A9A0023FB83 /* RSRowMapper.h in Headers */,
-				30687A3F1AC42A9A0023FB83 /* RSStoreKit.h in Headers */,
-				30687A391AC42A9A0023FB83 /* RSPrimaryKey.h in Headers */,
-				30687A311AC42A9A0023FB83 /* RSBucket.h in Headers */,
+				305D218D1ACAAA1E00C0A698 /* RSObjCClassDumpDao.h in Headers */,
+				305D21831ACAAA1D00C0A698 /* DirectoryWatcher.h in Headers */,
+				305D218B1ACAAA1E00C0A698 /* RSDatabaseConnector.h in Headers */,
+				305D218F1ACAAA1E00C0A698 /* RSObject.h in Headers */,
+				305D21911ACAAA1E00C0A698 /* RSPrimaryKey.h in Headers */,
+				305D21891ACAAA1D00C0A698 /* RSDao.h in Headers */,
+				305D21991ACAAA1E00C0A698 /* RSVersionDao.h in Headers */,
+				305D21951ACAAA1E00C0A698 /* RSStorage.h in Headers */,
+				305D21931ACAAA1E00C0A698 /* RSRowMapper.h in Headers */,
+				305D21851ACAAA1D00C0A698 /* RSBaseDao.h in Headers */,
+				305D21871ACAAA1D00C0A698 /* RSBucket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,17 +547,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30687A301AC42A9A0023FB83 /* RSBaseDao.m in Sources */,
-				30687A2E1AC42A9A0023FB83 /* DirectoryWatcher.m in Sources */,
-				30687A3E1AC42A9A0023FB83 /* RSStorage.m in Sources */,
-				30687A3C1AC42A9A0023FB83 /* RSRowMapper.m in Sources */,
-				30687A321AC42A9A0023FB83 /* RSBucket.m in Sources */,
-				30687A401AC42A9A0023FB83 /* RSStoreKit.m in Sources */,
-				30687A381AC42A9A0023FB83 /* RSObject.m in Sources */,
-				30687A3A1AC42A9A0023FB83 /* RSPrimaryKey.m in Sources */,
-				30687A421AC42A9A0023FB83 /* RSVersionDao.m in Sources */,
-				30687A341AC42A9A0023FB83 /* RSDao.m in Sources */,
-				30687A361AC42A9A0023FB83 /* RSDatabaseConnector.m in Sources */,
+				305D21981ACAAA1E00C0A698 /* RSStoreKit.m in Sources */,
+				305D21961ACAAA1E00C0A698 /* RSStorage.m in Sources */,
+				305D21861ACAAA1D00C0A698 /* RSBaseDao.m in Sources */,
+				305D21841ACAAA1D00C0A698 /* DirectoryWatcher.m in Sources */,
+				305D219A1ACAAA1E00C0A698 /* RSVersionDao.m in Sources */,
+				305D21881ACAAA1D00C0A698 /* RSBucket.m in Sources */,
+				305D21941ACAAA1E00C0A698 /* RSRowMapper.m in Sources */,
+				305D21921ACAAA1E00C0A698 /* RSPrimaryKey.m in Sources */,
+				305D218A1ACAAA1E00C0A698 /* RSDao.m in Sources */,
+				305D21901ACAAA1E00C0A698 /* RSObject.m in Sources */,
+				305D218E1ACAAA1E00C0A698 /* RSObjCClassDumpDao.m in Sources */,
+				305D218C1ACAAA1E00C0A698 /* RSDatabaseConnector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

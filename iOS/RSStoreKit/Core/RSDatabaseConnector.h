@@ -20,12 +20,12 @@
 
 - (void)executeStatements:(NSString *)sql;
 
-- (void)updateWithAction:(void (^)(BOOL success))action SQL:(NSString *)sql,...;
-- (void)queryObjectWithActon:(void(^)(id obj))action rowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ...;
-- (void)queryObjectsWithActon:(void(^)(NSArray *objs))action rowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ...;
-- (BOOL)updateWithSQL:(NSString *)sql,...;
-- (id)queryObjectWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ...;
-- (NSMutableArray *)queryObjectsWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ...;
+- (void)updateWithAction:(void (^)(BOOL success))action SQL:(NSString *)sql,... NS_REQUIRES_NIL_TERMINATION;
+- (void)queryObjectWithActon:(void(^)(id obj))action rowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)queryObjectsWithActon:(void(^)(NSArray *objs))action rowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ... NS_REQUIRES_NIL_TERMINATION;
+- (BOOL)updateWithSQL:(NSString *)sql,... NS_REQUIRES_NIL_TERMINATION;
+- (id)queryObjectWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ... NS_REQUIRES_NIL_TERMINATION;
+- (NSMutableArray *)queryObjectsWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql, ... NS_REQUIRES_NIL_TERMINATION;
 - (NSMutableArray *)queryObjectsWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql ids:(NSArray *)keys;
 
 - (long long)countOfTable:(NSString *)tableName;
