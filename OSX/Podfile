@@ -6,7 +6,6 @@ pod 'FMDB'
 end
 
 target 'NEUApply' do
-pod 'FMDB'
 pod 'Underscore.m', '~> 0.2'
 end
 

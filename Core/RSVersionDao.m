@@ -53,21 +53,21 @@
 
 - (BOOL)add:(RSVersionInfo *)obj {
     static NSString *sql = @"replace into version_info (table_name, version, timestamp, meta) values (?, ?, ?, ?)";
-    return [[self connector] updateWithSQL:sql, [obj getInKey], @([obj version]), [obj timestamp], [[obj meta] description]? : @""];
+    return [[self connector] updateWithSQL:sql, [obj getInKey], @([obj version]), [obj timestamp], [[obj meta] description]? : @"", nil];
 }
 
 - (BOOL)update:(RSVersionInfo *)obj {
     static NSString *sql = @"update version_info set version = ?, meta = ? where table_name = ?";
-    return [[self connector] updateWithSQL:sql, @([obj version]), [[obj meta] description], [obj getInKey]];
+    return [[self connector] updateWithSQL:sql, @([obj version]), [[obj meta] description], [obj getInKey], nil];
 }
 
 - (BOOL)remove:(id<RSPrimaryKey>)key {
     static NSString * sql = @"delete from version_info where table_name = ?";
-    return [[self connector] updateWithSQL:sql, key];
+    return [[self connector] updateWithSQL:sql, key, nil];
 }
 
 - (RSVersionInfo *)get:(NSString *)tableName {
-    return [[self connector] queryObjectWithRowMapper:[RSVersionInfoRowMapper new] SQL:@"select * from version_info where table_name = ?", tableName];;
+    return [[self connector] queryObjectWithRowMapper:[RSVersionInfoRowMapper new] SQL:@"select * from version_info where table_name = ?", tableName, nil];;
 }
 
 + (NSString *)createDao {
