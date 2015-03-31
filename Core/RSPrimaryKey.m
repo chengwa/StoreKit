@@ -85,7 +85,7 @@
 
 - (BOOL)isEqual:(id)object {
     if ([object isKindOfClass:[self class]]) {
-        return [((RSStringPK *)object) token] == _token;
+        return [[((RSStringPK *)object) token] isEqualToString:_token];
     }
     return NO;
 }
