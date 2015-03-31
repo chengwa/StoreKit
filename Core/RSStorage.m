@@ -151,6 +151,11 @@
         NSError *error = nil;
         success = [fileMgr createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         if (success) {
+            NSURL *url = [NSURL fileURLWithPath:path];
+            BOOL success = [url setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:&error];
+            if (!success || error) {
+                NSLog(@"%@", [error localizedDescription]);
+            }
             return YES;
         }
         NSLog(@"%@", [error localizedDescription]);
