@@ -13,16 +13,17 @@
 #elif TARGET_OS_MACOS
 #import <Cocoa/Cocoa.h>
 #endif
-static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 week
+static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 3; // 3 week
 
 @interface RSBucket () {
     NSFileManager *_fileManager;
+    NSInteger _maxCacheAge;
+    BOOL _disableAutoCacheCleaner;
 }
 
 @property (weak, nonatomic) RSStorage *storage;
 
 @property (assign, nonatomic) NSUInteger maxMemoryCost;
-@property (assign, nonatomic) NSInteger maxCacheAge;
 @property (assign, nonatomic) NSUInteger maxCacheSize;
 @property (assign, nonatomic, getter=isUseMemoryCache) BOOL useMemoryCache;
 
@@ -30,6 +31,8 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
 @property (strong, nonatomic) NSString *diskCachePath;
 @property (strong, nonatomic) NSMutableArray *customPaths;
 @property (strong, nonatomic) dispatch_queue_t ioQueue;
+@property (strong, nonatomic) NSString *fileExtension;
+@property (strong, nonatomic) NSFileManager *fileManager;
 
 - (void)__commonInitialize:(NSString *)fullNamespace useMemoryCache:(BOOL)enabled;
 @end
@@ -44,7 +47,8 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
     
     // Init default values
     _maxCacheAge = kDefaultCacheMaxCacheAge;
-    
+    _disableAutoCacheCleaner = YES; // for enable observer hack
+    [self disableAutoCacheCleaner:NO];
     // Init the memory cache
     [self setUseMemoryCache:enabled];
     
@@ -61,16 +65,6 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
                                              selector:@selector(clearMemory)
                                                  name:UIApplicationDidReceiveMemoryWarningNotification
                                                object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(cleanDisk)
-                                                 name:UIApplicationWillTerminateNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(backgroundCleanDisk)
-                                                 name:UIApplicationDidEnterBackgroundNotification
-                                               object:nil];
 #endif
 }
 
@@ -85,12 +79,43 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
     }];
     
     // Start the long-running task and return immediately.
+    if (_disableAutoCacheCleaner) {
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+        return;
+    }
     [self cleanDiskWithCompletionBlock:^{
         [application endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     }];
 }
 #endif
+
+- (void)disableAutoCacheCleaner:(BOOL)disableAutoCacheCleaner {
+    if (_disableAutoCacheCleaner == disableAutoCacheCleaner) {
+        return;
+    }
+    _disableAutoCacheCleaner = disableAutoCacheCleaner;
+    if (_disableAutoCacheCleaner) {
+#if TARGET_OS_IPHONE
+        // Subscribe to app events
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+
+    } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(cleanDisk)
+                                                     name:UIApplicationWillTerminateNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(backgroundCleanDisk)
+                                                     name:UIApplicationDidEnterBackgroundNotification
+                                                   object:nil];
+#endif
+    }
+
+}
 
 - (instancetype)init {
     assert(0);
@@ -122,11 +147,22 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
     return [object isKindOfClass:[self class]] && [_path isEqualToString:[(RSBucket*)object path]];
 }
 
+
+- (void)setFileExtension:(NSString *)extension {
+    _fileExtension = extension;
+}
 @end
 
 #include <CommonCrypto/CommonCrypto.h>
 
 @implementation RSBucket (Cache)
+- (void)setMaxCacheAge:(NSInteger)maxCacheAge {
+    _maxCacheAge = maxCacheAge;
+}
+
+- (NSInteger)maxCacheAge {
+    return _maxCacheAge;
+}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -172,7 +208,9 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
     CC_MD5(str, (CC_LONG)strlen(str), r);
     NSString *filename = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
                           r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
-    
+    if (_fileExtension && [_fileExtension length]) {
+        filename = [filename stringByAppendingPathExtension:_fileExtension];
+    }
     return filename;
 }
 
@@ -377,8 +415,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
     [self clearDiskOnCompletion:nil];
 }
 
-- (void)clearDiskOnCompletion:(RSBucketNoParamsBlock)completion
-{
+- (void)clearDiskOnCompletion:(RSBucketNoParamsBlock)completion {
     dispatch_async(self.ioQueue, ^{
         [_fileManager removeItemAtPath:self.diskCachePath error:nil];
         [_fileManager createDirectoryAtPath:self.diskCachePath
@@ -525,4 +562,21 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7 * 8; // 1 wee
     });
 }
 
+- (void)enumerateFiles:(RSBucketEnumCompletedBlock)queryBlock completeBlock:(RSBucketNoParamsBlock)completeBlock {
+    dispatch_async(self.ioQueue, ^{
+        NSDirectoryEnumerator *enumerator = [_fileManager enumeratorAtPath:self.diskCachePath];
+        while (1) {
+            @autoreleasepool {
+                NSString *path = [enumerator nextObject];
+                if ([path length] == 0) {
+                    if (completeBlock)
+                        completeBlock();
+                    break;
+                }
+                if (queryBlock)
+                    queryBlock([self.diskCachePath stringByAppendingPathComponent:path]);
+            }
+        }
+    });
+}
 @end

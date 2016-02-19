@@ -12,6 +12,7 @@
 @interface RSStoreKit : RSObject
 @property (strong, nonatomic, readonly) NSString *rootPath;
 + (instancetype)kit;
+- (NSArray *)storages;
 @end
 
 @interface RSStoreKit (Storage)

@@ -12,11 +12,19 @@
 - (NSString *)getInKey {
     return self;
 }
+
+- (RSIDType)numbericIDKey {
+    return [[self getInKey] longLongValue];
+}
 @end
 
 @implementation NSNumber (PK)
 - (NSString *)getInKey {
     return [self description];
+}
+
+- (RSIDType)numbericIDKey {
+    return [self longLongValue];
 }
 @end
 
@@ -45,6 +53,10 @@
 
 - (NSString *)getInKey {
     return [NSString stringWithFormat:@"%lld", _ID];
+}
+
+- (RSIDType)numbericIDKey {
+    return _ID;
 }
 
 - (BOOL)isEqual:(id)object {
@@ -85,9 +97,13 @@
 
 - (BOOL)isEqual:(id)object {
     if ([object isKindOfClass:[self class]]) {
-        return [[((RSStringPK *)object) token] isEqualToString:_token];
+        return [((RSStringPK *)object) token] == _token;
     }
     return NO;
+}
+
+- (RSIDType)numbericIDKey {
+    return [_token numbericIDKey];
 }
 
 @end
@@ -121,7 +137,47 @@
         result = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
         return result;
     }
-    return nil;
+    return @"";
+}
+
+@end
+
+@implementation NSString (RSJSONModel)
+
+- (id)jsonObject {
+    return self;
+}
+
+@end
+
+@implementation NSNumber (RSJSONModel)
+
+- (id)jsonObject {
+    return self;
+}
+
+@end
+
+@implementation NSArray (RSJSONModel)
+
+- (id)jsonObject {
+    NSMutableArray *jsonObjects = [[NSMutableArray alloc] initWithCapacity:[self count]];
+    for (id<RSJSONModel> obj in self) {
+        [jsonObjects addObject:[obj jsonObject]];
+    }
+    return jsonObjects;
+}
+
+@end
+
+@implementation NSDictionary (RSJSONModel)
+
+- (id)jsonObject {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:[self count]];
+    for (id<RSJSONModel> key in self) {
+        dict[[key jsonObject]] = [dict[key] jsonObject];
+    }
+    return dict;
 }
 
 @end

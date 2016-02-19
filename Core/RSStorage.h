@@ -21,6 +21,8 @@
 - (void)setObject:(id <NSCoding>)object forKey:(id<RSPrimaryKey>)aKey ;
 - (void)objectForKey:(id <RSPrimaryKey>)key withCompletion:(RSBucketQueryCompletedBlock)block;
 - (id <NSCoding>)objectForKey:(id<RSPrimaryKey>)key;
+
+- (void)calculateSizeWithCompletionBlock:(RSBucketCalculateSizeBlock)completionBlock;
 @end
 
 @interface RSStorage (Storage)

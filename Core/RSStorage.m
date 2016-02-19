@@ -81,6 +81,32 @@
     return obj;
 }
 
+- (void)calculateSizeWithCompletionBlock:(RSBucketCalculateSizeBlock)completionBlock {
+    NSURL *diskCacheURL = [NSURL fileURLWithPath:self.path isDirectory:YES];
+    dispatch_async(self.ioQueue, ^{
+        NSUInteger fileCount = 0;
+        NSUInteger totalSize = 0;
+        
+        NSDirectoryEnumerator *fileEnumerator = [[[self kit] fileMgr] enumeratorAtURL:diskCacheURL
+                                                   includingPropertiesForKeys:@[NSFileSize]
+                                                                      options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                 errorHandler:NULL];
+        
+        for (NSURL *fileURL in fileEnumerator) {
+            NSNumber *fileSize;
+            [fileURL getResourceValue:&fileSize forKey:NSURLFileSizeKey error:NULL];
+            totalSize += [fileSize unsignedIntegerValue];
+            fileCount += 1;
+        }
+        
+        if (completionBlock) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(fileCount, totalSize);
+            });
+        }
+    });
+}
+
 - (RSStoreKit *)kit {
     return _level == 1 ? _parent : [_parent kit];
 }

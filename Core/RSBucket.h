@@ -19,6 +19,8 @@ typedef NS_ENUM(NSInteger, RSBucketCacheType) {
 
 typedef void(^RSBucketNoParamsBlock)();
 
+typedef void(^RSBucketEnumCompletedBlock)(NSString *fullPath);
+
 typedef void(^RSBucketQueryCompletedBlock)(NSData *data, RSBucketCacheType cacheType);
 
 typedef void(^RSBucketCheckCacheCompletionBlock)(BOOL isInCache);
@@ -30,12 +32,15 @@ typedef NSString *(^RSBucketCacheKeyFilterBlock)(NSURL *url);
 @interface RSBucket : RSObject
 @property (strong, nonatomic, readonly) NSString *path;
 @property (strong, nonatomic, readonly) NSString *name;
+@property (assign, nonatomic, setter=disableAutoCacheCleaner:, getter=isDisableAutoCacheCleaner) BOOL disableAutoCacheCleaner; // default is NO;
 - (instancetype)initWithStorage:(RSStorage *)storage name:(NSString *)name;
 - (instancetype)initWithStorage:(RSStorage *)storage name:(NSString *)name enableCache:(BOOL)enabled;
 - (void)setUseMemoryCache:(BOOL)useMemoryCache;
+- (void)setFileExtension:(NSString *)extension;
 @end
 
 @interface RSBucket (Cache)
+@property (assign, nonatomic) NSInteger maxCacheAge;
 - (void)addReadOnlyCachePath:(NSString *)path;
 - (void)storeData:(NSData *)data forKey:(NSString *)key;
 - (void)storeData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk;
@@ -58,6 +63,7 @@ typedef NSString *(^RSBucketCacheKeyFilterBlock)(NSURL *url);
 - (BOOL)diskDataExistsWithKey:(NSString *)key;
 - (NSString *)cachePathForKey:(NSString *)key inPath:(NSString *)path;
 - (NSString *)defaultCachePathForKey:(NSString *)key;
+- (void)enumerateFiles:(RSBucketEnumCompletedBlock)queryBlock completeBlock:(RSBucketNoParamsBlock)completeBlock;
 @end
 
 

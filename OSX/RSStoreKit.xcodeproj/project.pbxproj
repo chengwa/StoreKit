@@ -7,30 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		304AEC331AC5401D00A1A59E /* DirectoryWatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC1D1AC5401D00A1A59E /* DirectoryWatcher.h */; };
+		304AEC331AC5401D00A1A59E /* DirectoryWatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC1D1AC5401D00A1A59E /* DirectoryWatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC341AC5401D00A1A59E /* DirectoryWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC1E1AC5401D00A1A59E /* DirectoryWatcher.m */; };
-		304AEC351AC5401D00A1A59E /* RSBaseDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC1F1AC5401D00A1A59E /* RSBaseDao.h */; };
+		304AEC351AC5401D00A1A59E /* RSBaseDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC1F1AC5401D00A1A59E /* RSBaseDao.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC361AC5401D00A1A59E /* RSBaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC201AC5401D00A1A59E /* RSBaseDao.m */; };
-		304AEC371AC5401D00A1A59E /* RSBucket.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC211AC5401D00A1A59E /* RSBucket.h */; };
+		304AEC371AC5401D00A1A59E /* RSBucket.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC211AC5401D00A1A59E /* RSBucket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC381AC5401D00A1A59E /* RSBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC221AC5401D00A1A59E /* RSBucket.m */; };
-		304AEC391AC5401D00A1A59E /* RSDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC231AC5401D00A1A59E /* RSDao.h */; };
+		304AEC391AC5401D00A1A59E /* RSDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC231AC5401D00A1A59E /* RSDao.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC3A1AC5401D00A1A59E /* RSDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC241AC5401D00A1A59E /* RSDao.m */; };
-		304AEC3B1AC5401D00A1A59E /* RSDatabaseConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC251AC5401D00A1A59E /* RSDatabaseConnector.h */; };
+		304AEC3B1AC5401D00A1A59E /* RSDatabaseConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC251AC5401D00A1A59E /* RSDatabaseConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC3C1AC5401D00A1A59E /* RSDatabaseConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC261AC5401D00A1A59E /* RSDatabaseConnector.m */; };
-		304AEC3D1AC5401D00A1A59E /* RSObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC271AC5401D00A1A59E /* RSObject.h */; };
+		304AEC3D1AC5401D00A1A59E /* RSObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC271AC5401D00A1A59E /* RSObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC3E1AC5401D00A1A59E /* RSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC281AC5401D00A1A59E /* RSObject.m */; };
-		304AEC3F1AC5401D00A1A59E /* RSPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC291AC5401D00A1A59E /* RSPrimaryKey.h */; };
+		304AEC3F1AC5401D00A1A59E /* RSPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC291AC5401D00A1A59E /* RSPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC401AC5401D00A1A59E /* RSPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC2A1AC5401D00A1A59E /* RSPrimaryKey.m */; };
-		304AEC411AC5401D00A1A59E /* RSRowMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC2B1AC5401D00A1A59E /* RSRowMapper.h */; };
+		304AEC411AC5401D00A1A59E /* RSRowMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC2B1AC5401D00A1A59E /* RSRowMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC421AC5401D00A1A59E /* RSRowMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC2C1AC5401D00A1A59E /* RSRowMapper.m */; };
-		304AEC431AC5401D00A1A59E /* RSStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC2D1AC5401D00A1A59E /* RSStorage.h */; };
+		304AEC431AC5401D00A1A59E /* RSStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC2D1AC5401D00A1A59E /* RSStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC441AC5401D00A1A59E /* RSStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC2E1AC5401D00A1A59E /* RSStorage.m */; };
-		304AEC451AC5401D00A1A59E /* RSStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC2F1AC5401D00A1A59E /* RSStoreKit.h */; };
+		304AEC451AC5401D00A1A59E /* RSStoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC2F1AC5401D00A1A59E /* RSStoreKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC461AC5401D00A1A59E /* RSStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC301AC5401D00A1A59E /* RSStoreKit.m */; };
-		304AEC471AC5401D00A1A59E /* RSVersionDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC311AC5401D00A1A59E /* RSVersionDao.h */; };
+		304AEC471AC5401D00A1A59E /* RSVersionDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 304AEC311AC5401D00A1A59E /* RSVersionDao.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304AEC481AC5401D00A1A59E /* RSVersionDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC321AC5401D00A1A59E /* RSVersionDao.m */; };
 		304AEC4D1AC55A0400A1A59E /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AEC4C1AC55A0400A1A59E /* CSVParser.m */; };
-		3060A6881AC9663B004615A5 /* RSObjCClassDumpDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 3060A6861AC9663B004615A5 /* RSObjCClassDumpDao.h */; };
+		3060A6881AC9663B004615A5 /* RSObjCClassDumpDao.h in Headers */ = {isa = PBXBuildFile; fileRef = 3060A6861AC9663B004615A5 /* RSObjCClassDumpDao.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3060A6891AC9663B004615A5 /* RSObjCClassDumpDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3060A6871AC9663B004615A5 /* RSObjCClassDumpDao.m */; };
 		30649CCF1AC48E14006219D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30649CCE1AC48E14006219D9 /* main.m */; };
 		30649CD31AC48E1D006219D9 /* RSStoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306879FA1AC42A430023FB83 /* RSStoreKit.framework */; };

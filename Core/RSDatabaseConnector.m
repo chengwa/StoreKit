@@ -63,6 +63,11 @@
         NSString *fullPath = [path stringByAppendingPathComponent:name];
         _queue = [[FMDatabaseQueue alloc] initWithPath:fullPath];
         [[_queue database] setTraceExecution:[[[NSBundle mainBundle] infoDictionary][@"RSStoreKitConnectorEnableDebug"] boolValue]];
+        FMDatabase *_database = [_queue database];
+        sqlite3_exec([_database sqliteHandle], "PRAGMA encoding=\"UTF-8\"", NULL, NULL, NULL);
+        sqlite3_exec([_database sqliteHandle], "PRAGMA synchronous=NORMAL", NULL, NULL, NULL);
+        sqlite3_exec([_database sqliteHandle], "PRAGMA journal_mode=WAL", NULL, NULL, NULL);
+        sqlite3_exec([_database sqliteHandle], "PRAGMA temp_store=MEMORY", NULL, NULL, NULL);
         NSLog(@"%@", path);
     }
     return self;
@@ -232,6 +237,19 @@
         return 0;
     }
     return [[_queue database] intForQuery:[NSString stringWithFormat:@"select count(*) from %@", tableName]];
+}
+
+- (long long)sizeOfTable:(NSString *)tableName {
+    return 0;
+}
+
+- (bool)table:(NSString *)table containsField:(NSString *)field {
+    FMResultSet *result = [[_queue database] executeQuery:[[NSString alloc] initWithFormat:@"PRAGMA table_info(%@)", table]];
+    while ([result next]) {
+        if ([[result stringForColumnIndex:1] isEqualToString:field])
+            return true;
+    }
+    return false;
 }
 
 - (BOOL)dropTable:(NSString *)table {

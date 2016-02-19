@@ -133,6 +133,12 @@
     return [[self connector] lastError];
 }
 
+- (void)calculateSize:(void (^)(NSInteger itemCount, NSInteger totalSize))action {
+    NSInteger itemCount = [[self connector] countOfTable:[self daoName]];
+    NSInteger totalSize = [[self connector] sizeOfTable:[self daoName]];
+    action(itemCount, totalSize);
+}
+
 + (BOOL)supportDynamic {
     return NO;
 }
@@ -186,6 +192,13 @@
 
 - (NSInteger)daoVersion {
     return [[self class] daoVersion];
+}
+
+- (void)removeAllObjects {
+    static NSString *sqlFormat = @"delete from %@";
+    NSString *sql = [[NSString alloc] initWithFormat:sqlFormat, [self daoName]];
+    [[self connector] updateWithSQL:sql, nil];
+    return;
 }
 
 @end

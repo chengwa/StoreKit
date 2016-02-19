@@ -29,6 +29,9 @@
 - (NSMutableArray *)queryObjectsWithRowMapper:(id<RSRowMapper>)rowMapper SQL:(NSString *)sql ids:(NSArray *)keys;
 
 - (long long)countOfTable:(NSString *)tableName;
+- (long long)sizeOfTable:(NSString *)tableName;
+- (bool)table:(NSString *)table containsField:(NSString *)field;
+
 - (BOOL)dropTable:(NSString *)table;
 - (NSMutableArray *)allTableNames;
 

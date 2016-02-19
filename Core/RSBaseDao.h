@@ -34,7 +34,10 @@
 - (id<RSPrimaryKey>)get:(id<RSPrimaryKey>)key;
 - (NSArray *)multiGet:(NSArray *)keys;
 
+- (void)removeAllObjects;
 - (NSError *)lastError;
+
+- (void)calculateSize:(void (^)(NSInteger itemCount, NSInteger totalSize))action;
 @end
 
 @interface RSBaseDao (DaoExtension)

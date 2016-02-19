@@ -8,8 +8,11 @@
 
 #import "RSObject.h"
 
+typedef int64_t RSIDType;
+
 @protocol RSPrimaryKey <NSObject, NSCoding>
 - (NSString *)getInKey;
+- (RSIDType)numbericIDKey;
 @end
 
 @interface NSString (PK) <RSPrimaryKey>
@@ -17,8 +20,6 @@
 
 @interface NSNumber (PK) <RSPrimaryKey>
 @end
-
-typedef int64_t RSIDType;
 
 @interface RSIntPK : RSObject<RSPrimaryKey>
 @property (nonatomic, assign) RSIDType ID;
@@ -42,4 +43,25 @@ typedef int64_t RSIDType;
 
 @interface NSArray (PrimaryIDs)
 - (NSString *)ids;
+@end
+
+@protocol RSJSONModel <NSObject>
+@optional
+- (id)jsonObject;
+@end
+
+@interface NSNumber (RSJSONModel) <RSJSONModel>
+- (id)jsonObject;
+@end
+
+@interface NSString (RSJSONModel) <RSJSONModel>
+- (id)jsonObject;
+@end
+
+@interface NSArray (RSJSONModel)<RSJSONModel>
+- (id)jsonObject;
+@end
+
+@interface NSDictionary (RSJSONModel)<RSJSONModel>
+- (id)jsonObject;
 @end
